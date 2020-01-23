@@ -58,8 +58,20 @@ const ${name} = () => {
 export default ${name};
 `;
 
+  test = `import React from "react";
+import { ${name} } from "./${name}";
+
+describe("${name} tests", () => {
+  let component;
+
+  beforeEach(() => {
+    component = 
+  })
+});`;
+
   fs.writeFileSync(`${nameOfComponent}/${name}.jsx`, jsx);
   fs.writeFileSync(`${nameOfComponent}/${name}.module.scss`, "");
+  fs.writeFileSync(`${nameOfComponent}/${name}.test.js`, test);
 };
 
 createComponent(componentType, componentName);
