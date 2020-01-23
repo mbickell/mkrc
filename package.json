@@ -1,0 +1,15 @@
+{
+  "name": "mkrc",
+  "version": "1.0.0",
+  "description": "Create a react component similar to ng-generate",
+  "main": "makeReactComponent.js",
+  "scripts": {
+    "test": "makeReactComponent components Square"
+  },
+  "author": "mbickell",
+  "license": "MIT",
+  "bin": "./cli.js",
+  "dependencies": {
+    "commander": "^4.1.0"
+  }
+}
