@@ -4,7 +4,7 @@
   "description": "Create a react component similar to ng-generate",
   "main": "makeReactComponent.js",
   "scripts": {
-    "test": "makeReactComponent components Square"
+    "test": "node index.js components Square"
   },
   "author": "mbickell",
   "license": "MIT",
