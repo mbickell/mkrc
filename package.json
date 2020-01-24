@@ -1,6 +1,6 @@
 {
   "name": "mkrc",
-  "version": "1.0.0",
+  "version": "1.0.15",
   "description": "Create a react component similar to ng-generate",
   "main": "makeReactComponent.js",
   "scripts": {
@@ -8,7 +8,11 @@
   },
   "author": "mbickell",
   "license": "MIT",
-  "bin": "./cli.js",
+  "bin": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbickell/mkrc.git"
+  },
   "dependencies": {
     "commander": "^4.1.0"
   }
