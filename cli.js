@@ -95,6 +95,10 @@ export default ${name};
   fs.writeFileSync(`${nameOfComponent}/${name}.jsx`, jsx);
   fs.writeFileSync(`${nameOfComponent}/${name}.module.scss`, "");
   fs.writeFileSync(`${nameOfComponent}/${name}.test.js`, test);
+
+  console.log(
+    `Component with name: ${name} has been created in ${type} folder`
+  );
 };
 
 // Run function when command given
