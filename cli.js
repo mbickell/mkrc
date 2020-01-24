@@ -69,9 +69,15 @@ describe("${name} tests", () => {
   })
 });`;
 
+  const index = `import ${name} from "./${name}";
+
+export default ${name};
+`;
+
   fs.writeFileSync(`${nameOfComponent}/${name}.jsx`, jsx);
   fs.writeFileSync(`${nameOfComponent}/${name}.module.scss`, "");
   fs.writeFileSync(`${nameOfComponent}/${name}.test.js`, test);
+  fs.writeFileSync(`${nameOfComponent}/index.js`, index);
 };
 
 createComponent(componentType, componentName);
