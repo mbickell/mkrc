@@ -39,10 +39,6 @@ const createComponent = (type, name) => {
 
   checkArguments();
 
-  // Ensure component name starts with capital letter
-
-  name = name[0].toUpperCase() + name.slice(1);
-
   // File path setup
 
   const src = path.resolve("src");
