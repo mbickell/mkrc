@@ -1,14 +1,16 @@
 {
   "name": "mkrc",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Create a react component similar to ng-generate",
-  "main": "makeReactComponent.js",
+  "main": "./bin/mkrc.js",
   "scripts": {
     "test": "node index.js components Square"
   },
   "author": "mbickell",
   "license": "MIT",
-  "bin": "index.js",
+  "bin": {
+    "mkrc": "./bin/cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mbickell/mkrc.git"
