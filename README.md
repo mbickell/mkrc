@@ -52,13 +52,13 @@ export default Component;
 ## Install
 
 ```
-npm install mkrc
+npm install --save-dev mkrc
 ```
 
 or
 
 ```
-yarn add mkrc
+yarn add mkrc --dev
 ```
 
 ## Folder structure
@@ -86,8 +86,24 @@ First is containing folder in src. e.g. components or containers.
 
 Second is the name of the component.
 
+To set up the command add a script to your package.json file:
+
 ```
-mkrc <component-type> <component-name>
+  "scripts": {
+    "mkrc": "./node_modules/.bin/mkrc"
+  },
+```
+
+In the command line enter the following if using npm:
+
+```
+npm run mkrc <component-type> <component-name>
+```
+
+or the following if using yarn:
+
+```
+yarn mkrc <component-type> <component-name>
 ```
 
 ## Testing in this repo
