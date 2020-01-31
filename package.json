@@ -3,9 +3,7 @@
   "version": "1.2.0",
   "description": "Create a react component similar to ng-generate",
   "main": "./bin/cli.js",
-  "scripts": {
-    "test": "node index.js components Square"
-  },
+  "scripts": {},
   "author": "mbickell",
   "license": "MIT",
   "bin": "./bin/cli.js",
@@ -16,5 +14,11 @@
   "dependencies": {
     "commander": "^4.1.0"
   },
-  "keywords": ["react", "create", "component", "generator", "make"]
+  "keywords": [
+    "react",
+    "create",
+    "component",
+    "generator",
+    "make"
+  ]
 }
