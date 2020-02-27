@@ -16,13 +16,8 @@ const commander = require("commander")
   .parse(process.argv);
 
 const checkArguments = () => {
-  if (
-    typeof componentName === "undefined" ||
-    typeof componentType === "undefined"
-  ) {
-    console.error(
-      "command requires format: mkrc <component-type> <component-name>"
-    );
+  if (typeof componentName === "undefined" || typeof componentType === "undefined") {
+    console.error("command requires format: mkrc <component-type> <component-name>");
     process.exit(1);
   }
 };
@@ -70,7 +65,7 @@ const createComponent = (type, name) => {
 
   const test = [
     `import React from "react";`,
-    `import { ${name} } from "./${name}";`,
+    `import ${name} from "./${name}";`,
     "",
     `describe("${name} tests", () => {`,
     `  let component;`,
@@ -81,11 +76,7 @@ const createComponent = (type, name) => {
     `});`
   ];
 
-  const index = [
-    `import ${name} from "./${name}";`,
-    "",
-    `export default ${name};`
-  ];
+  const index = [`import ${name} from "./${name}";`, "", `export default ${name};`];
 
   // Create the files we use for React
 
@@ -106,9 +97,7 @@ const createComponent = (type, name) => {
 
   fs.writeFileSync(`${nameOfComponent}/${name}.module.scss`, "");
 
-  console.log(
-    `Component with name: ${name} has been created in ${type} folder`
-  );
+  console.log(`Component with name: ${name} has been created in ${type} folder`);
 };
 
 // Run function when command given

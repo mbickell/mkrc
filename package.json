@@ -1,10 +1,10 @@
 {
   "name": "mkrc",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Create a react component similar to ng-generate",
   "main": "./bin/cli.js",
   "scripts": {
-    "test": "node index.js components Square"
+    "test": "node ./bin/cli.js components Square"
   },
   "author": "mbickell",
   "license": "MIT",
@@ -16,5 +16,11 @@
   "dependencies": {
     "commander": "^4.1.0"
   },
-  "keywords": ["react", "create", "component", "generator", "make"]
+  "keywords": [
+    "react",
+    "create",
+    "component",
+    "generator",
+    "make"
+  ]
 }
