@@ -1,6 +1,6 @@
 {
   "name": "mkrc",
-  "version": "1.2.2",
+  "version": "1.2.21",
   "description": "Create a react component similar to ng-generate",
   "main": "./bin/cli.js",
   "scripts": {
