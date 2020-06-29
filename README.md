@@ -47,14 +47,15 @@ Component.test.js:
 
 ```
 import React from "react";
-import { Component } from "./Component";
+import { render } from "@testing-library/react";
+import Component from "./Component";
 
 describe("Component tests", () => {
-  let component;
-
-  beforeEach(() => {
-    component =
-  })
+  test("renders learn react link", () => {
+    const { getByText } = render(<Component />);
+    const linkElement = getByText(/Component works/i);
+    expect(linkElement).toBeInTheDocument();
+  });
 });
 ```
 
