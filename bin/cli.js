@@ -3,18 +3,23 @@
 const fs = require("fs");
 const path = require("path");
 
-let componentName, componentType;
+// import modules
+const boilerplate = require("./boilerplate");
 
 // get arguments from command line
+const commander = require("commander");
+commander.arguments("<component-type> <component-name>").action((type, name) => {
+  componentName = name;
+  componentType = type;
+});
 
-const commander = require("commander")
-  .arguments("<component-type>, <component-name>")
-  .action((type, name) => {
-    componentName = name;
-    componentType = type;
-  })
-  .parse(process.argv);
+// Create flags for command
+commander.option("-c, --class", "class component").option("-f, --function", "functional component");
 
+// Link command line to js
+commander.parse(process.argv);
+
+// Check arguments have been passed
 const checkArguments = () => {
   if (typeof componentName === "undefined" || typeof componentType === "undefined") {
     console.error("command requires format: mkrc <component-type> <component-name>");
@@ -24,58 +29,37 @@ const checkArguments = () => {
 
 const checkFolderExists = folder => {
   if (!fs.existsSync(folder)) {
+    console.log("hello");
     fs.mkdirSync(folder);
     console.log(`${folder} folder created!`);
   }
 };
 
+// Write boilerplate to files
+const createFile = (boilerplate, componentName, name) => {
+  boilerplate.forEach(line => {
+    fs.appendFileSync(`${componentName}/${name}.test.js`, line);
+    fs.appendFileSync(`${componentName}/${name}.test.js`, "\n");
+  });
+};
+
 const createComponent = (type, name) => {
   // If arguments not given, prevent code from running
-
   checkArguments();
 
   // File path setup
-
   const src = path.resolve("src");
   const typeOfComponent = path.resolve("src/" + type);
   const nameOfComponent = path.resolve("src/" + type + "/" + name);
 
   // Check if folders exist and create them if they don't
-
   checkFolderExists(src);
   checkFolderExists(typeOfComponent);
   checkFolderExists(nameOfComponent);
 
   // Boilerplate code for the files
-
-  const jsx = [
-    `import React from "react";`,
-    `import styles from "./${name}.module.scss";`,
-    "",
-    `const ${name} = () => {`,
-    `  return (`,
-    `    <>`,
-    `      <p>${name} works</p>`,
-    `    </>`,
-    `  );`,
-    `};`,
-    "",
-    `export default ${name};`
-  ];
-
-  const test = [
-    `import React from "react";`,
-    `import ${name} from "./${name}";`,
-    "",
-    `describe("${name} tests", () => {`,
-    `  let component;`,
-    "",
-    `  beforeEach(() => {`,
-    `    component =`,
-    `  })`,
-    `});`
-  ];
-
+  const jsx = commander.class ? boilerplate.createClassJsx(name) : boilerplate.createFuncJsx(name);
+  const test = boilerplate.createTestJs(name);
   const index = [`import ${name} from "./${name}";`, "", `export default ${name};`];
 
   // Create the files we use for React
@@ -95,11 +79,11 @@ const createComponent = (type, name) => {
     fs.appendFileSync(`${nameOfComponent}/index.js`, "\n");
   });
 
+  // Create empty scss file
   fs.writeFileSync(`${nameOfComponent}/${name}.module.scss`, "");
 
   console.log(`Component with name: ${name} has been created in ${type} folder`);
 };
 
 // Run function when command given
-
 createComponent(componentType, componentName);
