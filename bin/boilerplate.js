@@ -36,10 +36,8 @@ module.exports.createTestJs = name => [
   `import ${name} from "./${name}";`,
   "",
   `describe("${name} tests", () => {`,
-  `  test("renders learn react link", () => {`,
-  `    const { getByText } = render(<${name} />);`,
-  `    const linkElement = getByText(/${name} works/i);`,
-  `    expect(linkElement).toBeInTheDocument();`,
+  `  it("should render", () => {`,
+  `    expect(render(<${name} />)).toBeTruthy();`,
   `  });`,
   `});`,
 ];
