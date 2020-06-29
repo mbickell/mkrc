@@ -32,13 +32,14 @@ module.exports.createClassJsx = name => [
 
 module.exports.createTestJs = name => [
   `import React from "react";`,
+  `import { render } from "@testing-library/react";`,
   `import ${name} from "./${name}";`,
   "",
   `describe("${name} tests", () => {`,
-  `  let component;`,
-  "",
-  `  beforeEach(() => {`,
-  `    component =`,
-  `  })`,
+  `  test("renders learn react link", () => {`,
+  `    const { getByText } = render(<${name} />);`,
+  `    const linkElement = getByText(/${name} works/i);`,
+  `    expect(linkElement).toBeInTheDocument();`,
+  `  });`,
   `});`,
 ];
