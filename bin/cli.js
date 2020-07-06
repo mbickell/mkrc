@@ -29,7 +29,6 @@ const checkArguments = () => {
 
 const checkFolderExists = folder => {
   if (!fs.existsSync(folder)) {
-    console.log("hello");
     fs.mkdirSync(folder);
     console.log(`${folder} folder created!`);
   }
