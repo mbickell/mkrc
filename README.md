@@ -135,6 +135,26 @@ or the following if using yarn:
 yarn mkrc <component-type> <component-name>
 ```
 
+## Optional install
+
+An optional way to use mkrc is to install it globally using:
+
+```
+npm install -g mkrc
+```
+
+or
+
+```
+yarn global add mkrc
+```
+
+This will allow you to use mkrc anywhere in nearly the exact same way by omitting `yarn` or `npm run` from the beginning of the command:
+
+```
+mkrc <component-type> <component-name>
+```
+
 ## Testing in this repo
 
 Run script by entering:
