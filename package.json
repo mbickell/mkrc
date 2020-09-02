@@ -1,6 +1,6 @@
 {
   "name": "mkrc",
-  "version": "1.3.33",
+  "version": "1.3.34",
   "description": "Create React components similar to ng-generate",
   "keywords": [
     "react",
@@ -18,7 +18,8 @@
     "generate",
     "cli",
     "ng",
-    "functionality"
+    "functionality",
+    "typescript"
   ],
   "bugs": {
     "url": "https://github.com/mbickell/mkrc/issues"
