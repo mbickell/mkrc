@@ -14,7 +14,7 @@ commander.arguments("<component-type> <component-name>").action((type, name) => 
 });
 
 // Create flags for command
-commander.option("-c, --class", "class component").option("-f, --function", "functional component");
+commander.option("-c, --class", "class component").option("-f, --function", "functional component").option("-t, --tsfunction", "typescript functional component");
 
 // Link command line to js
 commander.parse(process.argv);
@@ -57,26 +57,52 @@ const createComponent = (type, name) => {
   checkFolderExists(nameOfComponent);
 
   // Boilerplate code for the files
-  const jsx = commander.class ? boilerplate.createClassJsx(name) : boilerplate.createFuncJsx(name);
-  const test = boilerplate.createTestJs(name);
-  const index = [`import ${name} from "./${name}";`, "", `export default ${name};`];
 
-  // Create the files we use for React
+  if (commander.tsfunction){
+    const tsx = boilerplate.createFuncTsx(name);
+    const test = boilerplate.createTestTsx(name);
+    const index = [`import ${name} from "./${name}";`, "", `export default ${name};`];
 
-  jsx.forEach(line => {
-    fs.appendFileSync(`${nameOfComponent}/${name}.jsx`, line);
-    fs.appendFileSync(`${nameOfComponent}/${name}.jsx`, "\n");
-  });
+    // Create the files we use for React
 
-  test.forEach(line => {
-    fs.appendFileSync(`${nameOfComponent}/${name}.test.js`, line);
-    fs.appendFileSync(`${nameOfComponent}/${name}.test.js`, "\n");
-  });
+    tsx.forEach(line => {
+      fs.appendFileSync(`${nameOfComponent}/${name}.tsx`, line);
+      fs.appendFileSync(`${nameOfComponent}/${name}.tsx`, "\n");
+    });
 
-  index.forEach(line => {
-    fs.appendFileSync(`${nameOfComponent}/index.js`, line);
-    fs.appendFileSync(`${nameOfComponent}/index.js`, "\n");
-  });
+    test.forEach(line => {
+      fs.appendFileSync(`${nameOfComponent}/${name}.test.tsx`, line);
+      fs.appendFileSync(`${nameOfComponent}/${name}.test.tsx`, "\n");
+    });
+
+    index.forEach(line => {
+      fs.appendFileSync(`${nameOfComponent}/index.ts`, line);
+      fs.appendFileSync(`${nameOfComponent}/index.ts`, "\n");
+    });
+
+  } else {
+    const jsx = commander.class ? boilerplate.createClassJsx(name) : boilerplate.createFuncJsx(name);
+    const test = boilerplate.createTestJs(name);
+    const index = [`import ${name} from "./${name}";`, "", `export default ${name};`];
+  
+    // Create the files we use for React
+  
+    jsx.forEach(line => {
+      fs.appendFileSync(`${nameOfComponent}/${name}.jsx`, line);
+      fs.appendFileSync(`${nameOfComponent}/${name}.jsx`, "\n");
+    });
+  
+    test.forEach(line => {
+      fs.appendFileSync(`${nameOfComponent}/${name}.test.js`, line);
+      fs.appendFileSync(`${nameOfComponent}/${name}.test.js`, "\n");
+    });
+  
+    index.forEach(line => {
+      fs.appendFileSync(`${nameOfComponent}/index.js`, line);
+      fs.appendFileSync(`${nameOfComponent}/index.js`, "\n");
+    });
+  }
+  
 
   // Create empty scss file
   fs.writeFileSync(`${nameOfComponent}/${name}.module.scss`, "");

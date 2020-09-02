@@ -41,3 +41,34 @@ module.exports.createTestJs = name => [
   `  });`,
   `});`,
 ];
+
+module.exports.createFuncTsx = name => [
+  `import React from "react";`,
+  `import styles from "./${name}.module.scss";`,
+  "",
+  `type ${name}Props = {`,
+  "",
+  `}`,
+  "",
+  `const ${name}: React.FC<${name}Props>= () => {`,
+  `  return (`,
+  `    <>`,
+  `      <p>${name} works</p>`,
+  `    </>`,
+  `  );`,
+  `};`,
+  "",
+  `export default ${name};`,
+];
+
+module.exports.createTestTsx = name => [
+  `import React from "react";`,
+  `import { render } from "@testing-library/react";`,
+  `import ${name} from "./${name}";`,
+  "",
+  `describe("${name} tests", () => {`,
+  `  it("should render", () => {`,
+  `    expect(render(<${name} />)).toBeTruthy();`,
+  `  });`,
+  `});`,
+];
