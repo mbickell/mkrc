@@ -1,6 +1,6 @@
 {
   "name": "mkrc",
-  "version": "1.3.35",
+  "version": "1.3.36",
   "description": "Create React components similar to ng-generate",
   "keywords": [
     "react",
